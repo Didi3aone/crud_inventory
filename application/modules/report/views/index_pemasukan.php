@@ -44,7 +44,7 @@
                                             $jml_produk +=$value['jumlah_item'];
                                         }
                                     ?>
-                                    <th><b>Total Pengeluaran</b></th>
+                                    <th><b>Total Pemasukan</b></th>
                                     <th><b><?= number_format($total) ?></b></th>
                                     <th colspan="1"></th>
                                     <th><b><?= $jml_produk ?></b></th>
