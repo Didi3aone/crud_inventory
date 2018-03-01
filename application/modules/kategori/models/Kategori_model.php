@@ -14,6 +14,10 @@ class Kategori_model extends CI_Model {
 	public function get_all_data($params = array()) {
 		$this->db->select('*');
 		$this->db->from($this->_table);
+		
+		if(isset($params['id'])) {
+			$this->db->where('kategori_produk_id', $params['id']);
+		}
         
         $res = $this->db->get();
 		if(isset($params['id'])) {

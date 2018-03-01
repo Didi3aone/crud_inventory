@@ -12,6 +12,9 @@ class Kategori extends CI_Controller {
         $this->_km = new Kategori_model();
 
         $this->load->library('form_validation');
+        if($this->session->userdata("is_login") == FALSE){
+            redirect("user");
+        }
     }
 /*
     * list data
@@ -62,6 +65,35 @@ class Kategori extends CI_Controller {
         $this->load->view('kategori/create');
         $this->load->view(LAYOUT_FOOTER, $footer);
     } 
+    
+    public function edit($id = null)
+    {
+
+        $data['item'] = $this->Kategori_model->get_all_data(array('id' => $id));
+        // var_dump($data['item']);
+        
+        $header = array(
+            "title"       => "kategori",
+            "title_page"  => "Create kategori",
+            "breadcrumb"  => "<li><a href=''>Home</a></li><li> Create kategori </li>",
+            "active_page" => "category",
+            "css" => array(
+                    "assets/css/select2.min.css",
+            ),
+        );
+
+        $footer = array(
+            "script" => array(
+                "assets/js/pages/kategori/create.js",
+                "assets/js/plugins/select2/select2.full.min.js",
+            ),
+        );
+
+        //load views
+        $this->load->view(LAYOUT_HEADER, $header);
+        $this->load->view('kategori/create',$data);
+        $this->load->view(LAYOUT_FOOTER, $footer);
+    }
 
     public function list_all_data()
     {
@@ -156,6 +188,30 @@ class Kategori extends CI_Controller {
                 }
             }
         }
+        $this->output->set_content_type('application/json');
+        echo json_encode($message);
+        exit;
+    }
+
+    public function delete()
+    {
+        if(!$this->input->is_ajax_request() || $this->input->method(true) != "POST") {
+            exit('No direct script access allowed');
+        }
+
+        $message['is_error'] = true;
+
+        $id = $this->input->post('id');
+
+        if(!empty($id)) {
+            $conditions = array("kategori_produk_id" => $id);
+            $delete = $this->Kategori_model->delete($conditions);
+
+            $message['is_error'] = false;
+            $message['notif_title'] = "Kategori Produk has been deleted";
+            $message['redirect_to'] = "";
+        }
+
         $this->output->set_content_type('application/json');
         echo json_encode($message);
         exit;

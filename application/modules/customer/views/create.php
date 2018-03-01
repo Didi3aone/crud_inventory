@@ -1,7 +1,8 @@
 <?php
     $id                 = isset($item["customer_id"]) ? $item["customer_id"] : "";
     $name               = isset($item["customer_name"]) ? $item["customer_name"] : "";
-    $alamat 			= isset($item['alamat_customer']) ? $item['alamat_customer'] : "";
+    $no_tlp             = isset($item["no_tlp"]) ? $item["no_tlp"] : "";
+    $alamat 			= isset($item['customer_alamat']) ? $item['customer_alamat'] : "";
     $btn_msg            = ($id == 0) ? "Create" : " Update";
     $header_title       = ($id == 0) ? "Input Customer Baru" : " Edit Customer";
 ?>
@@ -38,13 +39,13 @@
                                 <section>
                                     <label class="label">No telp <sup class="color-red">*</sup></label>
                                     <label class="input">
-                                        <input type="text" name="no_tlp" value="<?= $name ?>">
+                                        <input type="number" name="no_tlp" value="<?= $no_tlp ?>">
                                     </label>
                                 </section>
                                 <section>
                                     <label class="label">Alamat <sup class="color-red">*</sup></label>
                                     <label class="input">
-                                        <textarea name="alamat" cols="60" rows="20"></textarea>
+                                        <textarea name="alamat" cols="60" rows="20"><?= $alamat ?></textarea>
                                     </label>
                                 </section>
                             </div>     

@@ -12,6 +12,9 @@ class Produk extends CI_Controller {
         $this->load->model('produk/Produk_model');
 
         $this->_pr = new Produk_model();
+        if($this->session->userdata("is_login") == FALSE){
+            redirect("user");
+        }
 	}
 
     /*
@@ -82,7 +85,7 @@ class Produk extends CI_Controller {
 
         $footer = array(
             "script" => array(
-                "assets/js/pages/transaksi/create.js",
+                "assets/js/pages/produk/create.js",
                 "assets/js/plugins/select2/select2.full.min.js",
             ),
         );
@@ -133,7 +136,8 @@ class Produk extends CI_Controller {
 
         $id 			= $this->input->post('id');
         $name 			= $this->input->post('name');
-        $kategori_id 	= $this->input->post('kategori_id');
+        $kategori_id    = $this->input->post('kategori_id');
+        $price    	= $this->input->post('price');
         
         $this->load->library('form_validation');
 
@@ -147,7 +151,8 @@ class Produk extends CI_Controller {
             //prepare insert data
             $arrayToDB = array(
                 "produk_name"    	 => $name,
-                "produk_kategori_id" => $kategori_id
+                "produk_kategori_id" => $kategori_id,
+                "produk_price"       => $price,
             );
          
             //insert or update
@@ -164,7 +169,7 @@ class Produk extends CI_Controller {
                     $this->db->trans_commit();
                     $message['is_error']        = false;
                     $message['notif_title']     = "Success!";
-                    $message['notif_message']   = "New category has been added.";
+                    $message['notif_message']   = "New Produk has been added.";
                     $message['redirect_to']     = "/crud_inventory/produk";
                 }
             } 
@@ -195,61 +200,26 @@ class Produk extends CI_Controller {
 
     public function delete()
     {
-        //must ajax and must get.
-        if (!$this->input->is_ajax_request() || $this->input->method(true) != "GET") {
+        if(!$this->input->is_ajax_request() || $this->input->method(true) != "POST") {
             exit('No direct script access allowed');
         }
 
+        $message['is_error'] = true;
+
         $id = $this->input->post('id');
-        // $is_active = $this->input->post('active');
 
         if(!empty($id)) {
-            
-            $data = array(
-                "find_by_pk" => array($id),
-                "count_all_first" => true,
-                "status"          => STATUS_ACTIVE,
-                "row_array"       => true,
-            );
-            $this->_category_model->get_all_data($data); 
-        
-        if($data['total'] == '') {
-                show_404();
-            } else {
-                $this->db->trans_begin();
+            $conditions = array("produk_id" => $id);
+            $delete = $this->Produk_model->delete($conditions);
 
-                $conditions = array('kategori_id' => $id);
-
-                $result  = $this->_category_model->delete($conditions);
-
-                //end transaction.
-                if ($this->db->trans_status() === false) {
-                    //failed.
-                    $this->db->trans_rollback();
-
-                    //failed.
-                    $message['error_msg'] = 'database operation failed';
-
-                } else {
-                    //success.
-                    $this->db->trans_commit();
-
-                    $message['is_error'] = false;
-                    $message['error_msg'] = '';
-
-                    //smallbox.
-                    $message['notif_title'] = "Done!";
-                    $message['notif_message'] = "Category has been deleted.";
-                    $message['redirect_to'] = "";
-                }
-                }
-        } else {
-            //id is not passed.
-            $message['error_msg'] = 'Invalid ID.';
+            $message['is_error'] = false;
+            $message['notif_title'] = "Produk has been deleted";
+            $message['redirect_to'] = "";
         }
 
         $this->output->set_content_type('application/json');
         echo json_encode($message);
+        exit;
     }
 
     

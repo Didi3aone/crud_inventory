@@ -6,6 +6,9 @@ class Report extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('report/Report_model');
+        if($this->session->userdata("is_login") == FALSE){
+            redirect("user");
+        }
 	}
 
 	public function list_pengeluaran()

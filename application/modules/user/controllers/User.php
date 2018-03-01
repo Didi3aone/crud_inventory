@@ -64,9 +64,10 @@ class User extends MX_Controller {
             // print_r($user);exit();
 
             if ($user) {
-            	foreach ($user as $key => $value) {
-	                $this->session->set_userdata("user_id",$value['user_id']);
-            	}
+            	    $this->session->set_userdata("is_login", TRUE);
+	                $this->session->set_userdata("user_id",$user['user_id']);
+                    $this->session->set_userdata("user_name",$user['user_name']);
+            	
 
                 $message['is_error']      = false;
                 $message['notif_title']   = "Excellent!";
@@ -82,6 +83,11 @@ class User extends MX_Controller {
         $this->output->set_content_type('application/json');
         echo json_encode($message);
         exit;
+    }
+
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect("user");
     }
 }
 

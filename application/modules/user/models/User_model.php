@@ -25,7 +25,7 @@ class User_model extends CI_Model {
         $this->db->from($this->_table);
 
     	$res = $this->db->get();
-    	return $res->result_array();
+    	return $res->row_array();
     }
 }
 

@@ -27,8 +27,8 @@ $(document).ready(function () {
         {"sTitle": "Nama Customer", "mData": "customer_name"},
         {"sTitle": "produk Name", "mData": "produk_name"},
         {"sTitle": "Jumlah Produk", "mData": "jumlah_item"},
-        {"sTitle": "Harga Produk", "mData": "transaksi_harga"},
-        {"sTitle": "Total Harga", "mData": "total_harga"},
+        {"sTitle": "Harga Produk", "mData": "totals"},
+        {"sTitle": "Total Harga", "mData": "total"},
         {"sTitle": "Tanggal Transaksi", "mData": "transaksi_tanggal"},
         {
             "sTitle" : "Action" , "sClass" : "center", "mData" : null,

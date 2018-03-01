@@ -25,6 +25,7 @@
                 {"sTitle": "ID", "mData": "produk_id"},
                 {"sTitle": "Nama Produk", "mData": "produk_name"},
                 {"sTitle": "Unit/kategori", "mData": "kategori_name"},
+                {"sTitle": "Harga Produk", "mData": "produk_price"},
                 {
                     "sTitle" : "Action" , "sClass" : "center", "mData" : null,
                     "bSortable" : false,

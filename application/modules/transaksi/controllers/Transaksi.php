@@ -6,10 +6,14 @@ class Transaksi extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('transaksi/Transaksi_model');
+       if($this->session->userdata("is_login") == FALSE){
+            redirect("user");
+        }
 	}
 
 	public function index()
     {
+        $data['item'] = $this->Transaksi_model->get_all_data();
 
         $header = array(
             "title"       => " List Data Transaksi",
@@ -28,7 +32,7 @@ class Transaksi extends CI_Controller {
         );
        
         $this->load->view(LAYOUT_HEADER, $header);
-        $this->load->view('transaksi/index');
+        $this->load->view('transaksi/index',$data);
         $this->load->view(LAYOUT_FOOTER, $footer);
     } 
 
@@ -188,6 +192,8 @@ class Transaksi extends CI_Controller {
                 $conditions = array("transaksi_id" => $id);
 
                 $total = ($jml * $hrg);
+                $arrayToDB['total_harga'] = $total;
+
                 if($type == 1) {
             		$arrayToDB['transaksi_type'] = "Pengeluaran";
             	} else {
@@ -274,6 +280,42 @@ class Transaksi extends CI_Controller {
         $conditions = array();
 
         $params = $this->Customer_model->select_ajax($limit, $start, $conditions);
+
+        // print_r($params);exit;
+
+        $message['page']        = $select_page;
+        $message['get']         = $params;
+        $message['paging_size'] = $limit;
+
+        $this->output->set_content_type('application/json');
+        echo json_encode($message);
+        exit;
+    }
+
+    public function list_select_produk_harga()
+    {
+        //must ajax and must get.
+        if (!$this->input->is_ajax_request() || $this->input->method(true) != "GET") {
+            exit('No direct script access allowed');
+        }
+
+        $this->load->model('transaksi/Transaksi_model');
+
+        $select_q = $this->input->get('q');
+        $select_page = ($this->input->get('page')) ? $this->input->get('page') : 1;
+
+        $limit = 10;
+        $start = ($limit * ($select_page - 1));
+
+        $filters = array();
+
+        if($select_q != "") {
+            $filters['produk_price'] = $select_q;
+        }
+
+        $conditions = array();
+
+        $params = $this->Transaksi_model->select_ajax($limit, $start, $conditions);
 
         // print_r($params);exit;
 

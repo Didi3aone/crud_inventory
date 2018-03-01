@@ -13,6 +13,10 @@ class Customer extends MX_Controller
         $this->load->model('customer/Customer_model');
 
         $this->_cm = new Customer_model();
+
+        if($this->session->userdata("is_login") == FALSE){
+            redirect("user");
+        }
     }
 
     /*
@@ -209,10 +213,10 @@ class Customer extends MX_Controller
 
         if(!empty($id)) {
             $conditions = array("customer_id" => $id);
-            $delete = $this->Transaksi_model->delete($conditions);
+            $delete = $this->Customer_model->delete($conditions);
 
             $message['is_error'] = false;
-            $message['notif_title'] = "Transaksi has been deleted";
+            $message['notif_title'] = "Customer has been deleted";
             $message['redirect_to'] = "";
         }
 

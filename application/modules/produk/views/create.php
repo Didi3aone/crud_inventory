@@ -1,7 +1,7 @@
 <?php
     $id                 = isset($item["produk_id"]) ? $item["produk_id"] : "";
     $name               = isset($item["produk_name"]) ? $item["produk_name"] : "";
-    $kategori_id               = isset($item["kategori_produk_id"]) ? $item["kategori_produk_id"] : "";
+    $kategori_id               = isset($item["produk_kategori_id"]) ? $item["produk_kategori_id"] : "";
     $kategori               = isset($item["kategori_name"]) ? $item["kategori_name"] : "";
     $price 			= isset($item['produk_price']) ? $item['produk_price'] : "";
     $btn_msg            = ($id == 0) ? "Create" : " Update";
@@ -34,7 +34,7 @@
                                 <section>
 									<label class="label">Kategori Produk <sup class="color-red">*</sup></label>
 									<label class="select">
-										<?php if($kategori != "") : ?>
+										<?php if($kategori_id != "") : ?>
 										<select name="kategori_id" id="kategori" style="width: 100%;">
 											<option selected value="<?= $kategori_id?>"><?= $kategori ?></option>
 										</select>
@@ -47,6 +47,12 @@
                                     <label class="label">Nama Produk <sup class="color-red">*</sup></label>
                                     <label class="input">
                                         <input type="text" name="name" value="<?= $name ?>">
+                                    </label>
+                                </section>
+                                <section>
+                                    <label class="label">Harga Produk <sup class="color-red">*</sup></label>
+                                    <label class="input">
+                                        <input type="number" name="price" value="<?= $price ?>">
                                     </label>
                                 </section>
                             </div>     

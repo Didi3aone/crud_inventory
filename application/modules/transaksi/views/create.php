@@ -1,13 +1,13 @@
 <?php
     $id            = isset($item["transaksi_id"]) ? $item["transaksi_id"] : "";
     $transaksi_type_id            = isset($item["transaksi_type_id"]) ? $item["transaksi_type_id"] : "";
+    $transaksi_type            = isset($item["transaksi_type"]) ? $item["transaksi_type"] : "";
     $produk_id     = isset($item['produk_id']) ? $item['produk_id'] : "";
     $produk_name   = isset($item["produk_name"]) ? $item["produk_name"] : "";
     $price         = isset($item['transaksi_harga']) ? $item['transaksi_harga'] : "";
     $customer_id   = isset($item['customer_id']) ? $item['customer_id'] : "";
     $customer      = isset($item['customer_name']) ? $item['customer_name'] : "";
     $jumlah 	   =  isset($item['jumlah_item']) ? $item['jumlah_item'] : "";
-    // print_r($jumlah);exit;
     $btn_msg       = ($id == 0) ? "Create" : " Update";
     $header_title  = ($id == 0) ? "Input Transaksi Baru" : " Edit Transaksi";
 ?>
@@ -48,9 +48,15 @@
                                     </label>
                                 </section>
                                 <section class="col col-6">
-                                    <label class="label">Price <sup class="color-red">*</sup></label>
-                                    <label class="input">
-                                        <input type="number" name="harga" value="<?= $price ?>">
+                                    <label class="label">Pilih Price <sup class="color-red">*</sup></label>
+                                    <label class="select">
+                                        <?php if($price != "") : ?>
+                                        <select name="harga" id="transaksi" style="width: 100%;">
+                                            <option selected value="<?= $price?>"><?= $price ?></option>
+                                        </select>
+                                            <?php else: ?>
+                                        <select name="harga" id="transaksi"></select>
+                                        <?php endif; ?>
                                     </label>
                                 </section>
                                 <section class="col col-6">
@@ -65,9 +71,17 @@
                                     <label class="label">Transaksi Type</label>
                                     <label class="input">
                                         <select name="type_id" style="width: 100%;" class="form-control">
-                                            <option value=""> -- Pilih Tipe --</option>
+                                            <?php if($transaksi_type_id == 1){ ?>
+                                             <option value="<?php echo $transaksi_type_id; ?>"> <?php echo $transaksi_type; ?> </option>
+                                             <option value="2"> Pemasukan </option>
+                                             <?php }else if($transaksi_type_id == 2){?>
+                                            <option value="<?php echo $transaksi_type_id; ?>"> <?php echo $transaksi_type; ?> </option>
                                             <option value="1"> Pengeluaran </option>
-                                            <option value="2"> Pemasukan </option>
+                                            <?php } else {?>
+                                                <option value="">--pilih--</option>
+                                                <option value="1"> Pengeluaran </option>
+                                                <option value="2"> Pemasukan </option>
+                                                <?php }?>
                                         </select>
                                     </label>
                                 </section>

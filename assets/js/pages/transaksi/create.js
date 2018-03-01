@@ -37,6 +37,45 @@ function customer() {
 	        maximumSelectionLength: 1,
 	    });
 	}
+function transaksi() {
+		//select2 for gudang.
+		var element = $("#transaksi")
+	    $(element).select2({
+	        ajax: {
+	            url: "/crud_inventory/transaksi/list_select_produk_harga",
+	            dataType: "json",
+	            delay: 500,
+	            data: function(params) {
+	                return {
+	                    q: params.term,
+	                    page: params.page,
+	                };
+	            },
+	            processResults: function(data, params) {
+
+	                params.page = params.page || 1;
+
+	                return {
+	                    results: $.map(data.get, function(item) {
+	                        return {
+	                            text: item.produk_price,
+	                            id: item.produk_price,
+	                        }
+	                    }),
+	                    pagination: {
+	                        more: (params.page * data.paging_size) < data.total_data,
+	                    }
+	                };
+	            },
+	            cache: true,
+	        },
+	        minimumInputLength: null,
+	        allowClear: true,
+	        placeholder: "Pilih harga",
+	        tags: false,
+	        maximumSelectionLength: 1,
+	    });
+	}
 function produk() {
 		//select2 for gudang.
 		var element = $("#prod_id")
@@ -79,6 +118,7 @@ function produk() {
 $(document).ready(function() {
 	customer();
 	produk();
+	transaksi()
 
 	var form = $('#form-submits');
     var submit = $('#form-submits button[type="submit"]');

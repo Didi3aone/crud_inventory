@@ -84,7 +84,7 @@
                 </ul>
                 <!-- logout button -->
                 <div id="logout" class="btn-header transparent pull-right">
-                    <span> <a href="" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+                    <span> <a href="<?= site_url("user/logout")?>" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
                 </div>
                 <!-- end logout button -->
 
@@ -107,7 +107,7 @@
                 <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
                     <img src="<?= base_url() ?>assets/img/1.png" alt="me" class="online" /> 
                     <span>
-                        <?= $this->session->userdata('username') ?> 
+                        <?= $this->session->userdata('user_name') ?> 
                     </span>
                     <i class="fa fa-angle-down"></i>
                 </a> 
