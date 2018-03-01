@@ -12,9 +12,13 @@ class Produk_model extends CI_Model {
 	}
 
 	public function get_all_data($params = array()) {
-		$this->db->select($this->_table_aliases.'.*, tkp.kategori_name');
+		$this->db->select($this->_table_aliases.'.*, tkp.kategori_name, tkp.kategori_produk_id');
 		$this->db->from($this->_table." ".$this->_table_aliases);
 		$this->db->join('tbl_kategori_produk tkp', 'tkp.kategori_produk_id = '.$this->_table_aliases.'.produk_kategori_id');
+
+		if(isset($params['id'])) {
+			$this->db->where('produk_id', $params['id']);
+		}
         
         $res = $this->db->get();
 		if(isset($params['id'])) {

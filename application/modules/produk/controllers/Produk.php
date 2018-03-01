@@ -64,6 +64,35 @@ class Produk extends CI_Controller {
         $this->load->view(LAYOUT_FOOTER, $footer);
     } 
 
+    public function edit($id = null)
+    {
+
+        $data['item'] = $this->Produk_model->get_all_data(array('id' => $id));
+        // var_dump($data['item']);
+        
+        $header = array(
+            "title"       => "transaksi",
+            "title_page"  => "Create transaksi",
+            "breadcrumb"  => "<li><a href=''>Home</a></li><li> Create transaksi </li>",
+            "active_page" => "category",
+            "css" => array(
+                    "assets/css/select2.min.css",
+            ),
+        );
+
+        $footer = array(
+            "script" => array(
+                "assets/js/pages/transaksi/create.js",
+                "assets/js/plugins/select2/select2.full.min.js",
+            ),
+        );
+
+        //load views
+        $this->load->view(LAYOUT_HEADER, $header);
+        $this->load->view('produk/create',$data);
+        $this->load->view(LAYOUT_FOOTER, $footer);
+    }
+
     public function list_all_data()
     {
         if(!$this->input->is_ajax_request() || $this->input->method(true) != "GET") {

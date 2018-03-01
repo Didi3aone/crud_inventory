@@ -1,8 +1,8 @@
 <?php
     $id                 = isset($item["produk_id"]) ? $item["produk_id"] : "";
     $name               = isset($item["produk_name"]) ? $item["produk_name"] : "";
-    $kategori_id               = isset($item["kategori_id"]) ? $item["kategori_id"] : "";
-    $kategori               = isset($item["name"]) ? $item["name"] : "";
+    $kategori_id               = isset($item["kategori_produk_id"]) ? $item["kategori_produk_id"] : "";
+    $kategori               = isset($item["kategori_name"]) ? $item["kategori_name"] : "";
     $price 			= isset($item['produk_price']) ? $item['produk_price'] : "";
     $btn_msg            = ($id == 0) ? "Create" : " Update";
     $header_title       = ($id == 0) ? "Input Produk Baru" : " Edit Produk";
@@ -35,7 +35,7 @@
 									<label class="label">Kategori Produk <sup class="color-red">*</sup></label>
 									<label class="select">
 										<?php if($kategori != "") : ?>
-										<select name="category_id" id="kategori" style="width: 100%;">
+										<select name="kategori_id" id="kategori" style="width: 100%;">
 											<option selected value="<?= $kategori_id?>"><?= $kategori ?></option>
 										</select>
 											<?php else: ?>
