@@ -6,14 +6,14 @@ class Customer extends MX_Controller
 
     private $_cm;
 
-	public function __construct()
-	{
+    public function __construct()
+    {
         parent::__construct();
         //load model
         $this->load->model('customer/Customer_model');
 
         $this->_cm = new Customer_model();
-	}
+    }
 
     /*
     * list data
@@ -65,6 +65,35 @@ class Customer extends MX_Controller
         $this->load->view(LAYOUT_FOOTER, $footer);
     } 
 
+    public function edit($id = null)
+    {
+
+        $data['item'] = $this->Customer_model->get_all_data(array('id' => $id));
+        // var_dump($data['item']);
+        
+        $header = array(
+            "title"       => "transaksi",
+            "title_page"  => "Create transaksi",
+            "breadcrumb"  => "<li><a href=''>Home</a></li><li> Create transaksi </li>",
+            "active_page" => "category",
+            "css" => array(
+                    "assets/css/select2.min.css",
+            ),
+        );
+
+        $footer = array(
+            "script" => array(
+                "assets/js/pages/transaksi/create.js",
+                "assets/js/plugins/select2/select2.full.min.js",
+            ),
+        );
+
+        //load views
+        $this->load->view(LAYOUT_HEADER, $header);
+        $this->load->view('customer/create',$data);
+        $this->load->view(LAYOUT_FOOTER, $footer);
+    }
+
     public function list_all_data()
     {
         if(!$this->input->is_ajax_request() || $this->input->method(true) != "GET") {
@@ -103,10 +132,10 @@ class Customer extends MX_Controller
 
         $message['is_error'] = true;
 
-        $id 		= $this->input->post('id');
-        $name 		= $this->input->post('name');
+        $id         = $this->input->post('id');
+        $name       = $this->input->post('name');
         $no_tlp     = $this->input->post('no_tlp');
-        $alamat 	= $this->input->post('alamat');
+        $alamat     = $this->input->post('alamat');
         
         $this->load->library('form_validation');
 
@@ -139,7 +168,7 @@ class Customer extends MX_Controller
                     $this->db->trans_commit();
                     $message['is_error']        = false;
                     $message['notif_title']     = "Success!";
-                    $message['notif_message']   = "New category has been added.";
+                    $message['notif_message']   = "New Customer has been added.";
                     $message['redirect_to']     = "/crud_inventory/customer";
                 }
             } 
@@ -147,7 +176,7 @@ class Customer extends MX_Controller
                 //conditions for update
                 $conditions = array("customer_id" => $id);
 
-                $result = $this->_dm->update($arrayToDB, $conditions);
+                $result = $this->_cm->update($arrayToDB, $conditions);
 
                 if ($this->db->trans_status() === FALSE) {
                     $this->db->trans_rollback();
@@ -170,67 +199,32 @@ class Customer extends MX_Controller
 
     public function delete()
     {
-        //must ajax and must get.
-        if (!$this->input->is_ajax_request() || $this->input->method(true) != "GET") {
+        if(!$this->input->is_ajax_request() || $this->input->method(true) != "POST") {
             exit('No direct script access allowed');
         }
 
+        $message['is_error'] = true;
+
         $id = $this->input->post('id');
-        // $is_active = $this->input->post('active');
 
         if(!empty($id)) {
-            
-            $data = array(
-                "find_by_pk" => array($id),
-                "count_all_first" => true,
-                "status"          => STATUS_ACTIVE,
-                "row_array"       => true,
-            );
-            $this->_category_model->get_all_data($data); 
-        
-        if($data['total'] == '') {
-                show_404();
-            } else {
-                $this->db->trans_begin();
+            $conditions = array("customer_id" => $id);
+            $delete = $this->Transaksi_model->delete($conditions);
 
-                $conditions = array('kategori_id' => $id);
-
-                $result  = $this->_category_model->delete($conditions);
-
-                //end transaction.
-                if ($this->db->trans_status() === false) {
-                    //failed.
-                    $this->db->trans_rollback();
-
-                    //failed.
-                    $message['error_msg'] = 'database operation failed';
-
-                } else {
-                    //success.
-                    $this->db->trans_commit();
-
-                    $message['is_error'] = false;
-                    $message['error_msg'] = '';
-
-                    //smallbox.
-                    $message['notif_title'] = "Done!";
-                    $message['notif_message'] = "Category has been deleted.";
-                    $message['redirect_to'] = "";
-                }
-                }
-        } else {
-            //id is not passed.
-            $message['error_msg'] = 'Invalid ID.';
+            $message['is_error'] = false;
+            $message['notif_title'] = "Transaksi has been deleted";
+            $message['redirect_to'] = "";
         }
 
         $this->output->set_content_type('application/json');
         echo json_encode($message);
+        exit;
     }
 
     
     public function list_select()
     {
-    	//must ajax and must get.
+        //must ajax and must get.
         if (!$this->input->is_ajax_request() || $this->input->method(true) != "GET") {
             exit('No direct script access allowed');
         }
