@@ -5,7 +5,9 @@ how to use this application system is
 2.input to the xampp directory
 3.bake the database in local
 4.import database to phpmyadmin
-5.access in your browser with http://crud_inventory
-
+5.access in your browser with http://crud_inventory                                                                                                          
+Login to sistem                                             
+1.User = admin
+2.password = admin
 artificial didi ganteng
 email: diditriawan13@gmail.com
