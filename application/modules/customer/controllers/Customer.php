@@ -105,6 +105,7 @@ class Customer extends MX_Controller
 
         $id 		= $this->input->post('id');
         $name 		= $this->input->post('name');
+        $no_tlp     = $this->input->post('no_tlp');
         $alamat 	= $this->input->post('alamat');
         
         $this->load->library('form_validation');
@@ -120,6 +121,7 @@ class Customer extends MX_Controller
             //prepare insert data
             $arrayToDB = array(
                 "customer_name"    => $name,
+                "no_tlp"           => $no_tlp,
                 "customer_alamat"  => $alamat
             );
          

@@ -36,6 +36,12 @@
                                     </label>
                                 </section>
                                 <section>
+                                    <label class="label">No telp <sup class="color-red">*</sup></label>
+                                    <label class="input">
+                                        <input type="text" name="no_tlp" value="<?= $name ?>">
+                                    </label>
+                                </section>
+                                <section>
                                     <label class="label">Alamat <sup class="color-red">*</sup></label>
                                     <label class="input">
                                         <textarea name="alamat" cols="60" rows="20"></textarea>
