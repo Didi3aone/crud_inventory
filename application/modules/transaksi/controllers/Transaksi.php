@@ -179,7 +179,7 @@ class Transaksi extends CI_Controller {
                     $this->db->trans_commit();
                     $message['is_error']        = false;
                     $message['notif_title']     = "Success!";
-                    $message['notif_message']   = "New category has been added.";
+                    $message['notif_message']   = "New Transaksi has been added.";
                     $message['redirect_to']     = "/crud_inventory/transaksi";
                 }
             } 
@@ -205,7 +205,7 @@ class Transaksi extends CI_Controller {
                     $this->db->trans_commit();
                     $message['is_error']        = false;
                     $message['notif_title']     = "Success!";
-                    $message['notif_message']   = "transaksi has been updated.";
+                    $message['notif_message']   = "Transaksi has been updated.";
                     $message['redirect_to']     = "/crud_inventory/transaksi";
                 }
             }
