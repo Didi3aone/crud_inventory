@@ -37,7 +37,6 @@
                                     <tr>
                                         <th data-hide="phone">ID</th>
                                         <th data-class="expand">Nama Produk</th>
-                                        <th data-hide="phone,tablet">Harga</th>
                                         <th data-hide="phone,tablet">Unit/Kategori</th>
                                         <th data-hide="phone,tablet">Action</th>
                                     </tr>

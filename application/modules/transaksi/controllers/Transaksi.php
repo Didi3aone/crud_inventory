@@ -8,12 +8,36 @@ class Transaksi extends CI_Controller {
 		$this->load->model('transaksi/Transaksi_model');
 	}
 
+	public function index()
+    {
+
+        $header = array(
+            "title"       => " List Data Transaksi",
+            "breadcrumb"  => "<li><a href=''>Home</a></li><li>  List Data Transaksi </li>",
+            "active_page" => "category",
+        );
+
+        $footer = array(
+            "script" => array(
+                "assets/js/plugins/datatables/jquery.dataTables.min.js",
+                "assets/js/plugins/datatables/dataTables.tableTools.min.js",
+                "assets/js/plugins/datatables/dataTables.bootstrap.min.js",
+                "assets/js/plugins/datatable-responsive/datatables.responsive.min.js",
+                "assets/js/pages/transaksi/list.js",
+            ),
+        );
+       
+        $this->load->view(LAYOUT_HEADER, $header);
+        $this->load->view('transaksi/index');
+        $this->load->view(LAYOUT_FOOTER, $footer);
+    } 
+
     public function create()
     {
         $header = array(
-            "title"       => "transaksi",
+            "title"       => "Create Transaksi",
             "title_page"  => "Create transaksi",
-            "breadcrumb"  => "<li><a href=''>Home</a></li><li> Create transaksi </li>",
+            "breadcrumb"  => "<li><a href=''>Home</a></li><li> Create Transaksi </li>",
             "active_page" => "category",
             "css" => array(
                     "assets/css/select2.min.css",
@@ -34,15 +58,10 @@ class Transaksi extends CI_Controller {
 
     public function edit($id = null)
     {
-    	$data = array();
 
-    	$datas = $this->Transaksi_model->get_all_data_by_id($id);
+    	$data['item'] = $this->Transaksi_model->get_all_data_by_id($id);
+    	// var_dump($data['item']);
     	
-    	foreach ($datas as $key => $value) {
-    		
-	        $data['item'] = $value;
-    	}
-
         $header = array(
             "title"       => "transaksi",
             "title_page"  => "Create transaksi",
@@ -64,6 +83,35 @@ class Transaksi extends CI_Controller {
         $this->load->view(LAYOUT_HEADER, $header);
         $this->load->view('transaksi/create',$data);
         $this->load->view(LAYOUT_FOOTER, $footer);
+    }
+
+    public function list_all_data()
+    {
+        if(!$this->input->is_ajax_request() || $this->input->method(true) != "GET") {
+            exit('No direct script access allowed');
+        }
+
+        //declare variable here
+        $sort_col = $this->input->get("iSortCol_0");
+        $sort_dir = $this->input->get("sSortDir_0");
+        $limit    = $this->input->get("iDisplayLength");
+        $start    = $this->input->get("iDisplayStart");
+        $search   = $this->input->get("sSearch");
+
+        //modification query selected
+
+        $result = $this->Transaksi_model->get_all_data();
+        // print_r($result);exit;
+
+        $output = array(
+            "aaData" => $result,
+            "sEcho"  => intval($this->input->get("sEcho")),
+            "iTotalRecords" => $result,
+            "iTotalDisplayRecords" => $result,
+        );
+
+        //output json encoding
+        echo json_encode($output);
     }
 
     public function proccess_form()
@@ -132,11 +180,7 @@ class Transaksi extends CI_Controller {
                     $message['is_error']        = false;
                     $message['notif_title']     = "Success!";
                     $message['notif_message']   = "New category has been added.";
-                    if($type == 1) {
-	                    $message['redirect_to']     = "/crud_inventory/report/list_pengeluaran";
-                    } else {
-                    	$message['redirect_to']     = "/crud_inventory/report/list_pemasukan";
-                    }
+                    $message['redirect_to']     = "/crud_inventory/transaksi";
                 }
             } 
             else {
@@ -162,11 +206,7 @@ class Transaksi extends CI_Controller {
                     $message['is_error']        = false;
                     $message['notif_title']     = "Success!";
                     $message['notif_message']   = "transaksi has been updated.";
-                    if($type == 1) {
-	                    $message['redirect_to']     = "/crud_inventory/report/list_pengeluaran";
-                    } else {
-                    	$message['redirect_to']     = "/crud_inventory/report/list_pemasukan";
-                    }
+                    $message['redirect_to']     = "/crud_inventory/transaksi";
                 }
             }
         }

@@ -15,10 +15,11 @@ class Report_model extends CI_Model {
         
         $pengeluaran = 1;
 
-		$this->db->select($this->_table_aliases.'.*, tc.customer_name, tp.produk_name');
+		$this->db->select($this->_table_aliases.'.*, tc.customer_name, tp.produk_name, tkp.kategori_name');
 		$this->db->from($this->_table." ".$this->_table_aliases);
 		$this->db->join('tbl_customer tc', 'tc.customer_id = '.$this->_table_aliases.'.transaksi_customer_id');
 		$this->db->join('tbl_produk tp', 'tp.produk_id = '.$this->_table_aliases.'.transaksi_produk_id');
+		$this->db->join('tbl_kategori_produk tkp', 'tkp.kategori_produk_id = tp.produk_kategori_id', 'left');
 		$this->db->where($this->_table_aliases.'.transaksi_type_id', $pengeluaran);
         
         $res = $this->db->get();
@@ -33,10 +34,11 @@ class Report_model extends CI_Model {
         
         $pemasukan = 2;
         
-		$this->db->select($this->_table_aliases.'.*, tc.customer_name, tp.produk_name');
+		$this->db->select($this->_table_aliases.'.*, tc.customer_name, tp.produk_name, tkp.kategori_name');
 		$this->db->from($this->_table." ".$this->_table_aliases);
 		$this->db->join('tbl_customer tc', 'tc.customer_id = '.$this->_table_aliases.'.transaksi_customer_id');
 		$this->db->join('tbl_produk tp', 'tp.produk_id = '.$this->_table_aliases.'.transaksi_produk_id');
+		$this->db->join('tbl_kategori_produk tkp', 'tkp.kategori_produk_id = tp.produk_kategori_id', 'left');
 		$this->db->where($this->_table_aliases.'.transaksi_type_id', $pemasukan);
         
         $res = $this->db->get();

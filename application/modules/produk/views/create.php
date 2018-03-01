@@ -32,18 +32,6 @@
                         <fieldset>
                             <div class="row">
                                 <section>
-                                    <label class="label">Nama Produk <sup class="color-red">*</sup></label>
-                                    <label class="input">
-                                        <input type="text" name="name" value="<?= $name ?>">
-                                    </label>
-                                </section>
-                                <section>
-                                    <label class="label">Price <sup class="color-red">*</sup></label>
-                                    <label class="input">
-                                        <input type="number" name="price" value="<?= $price ?>">
-                                    </label>
-                                </section>
-                                <section class="col col-6">
 									<label class="label">Kategori Produk <sup class="color-red">*</sup></label>
 									<label class="select">
 										<?php if($kategori != "") : ?>
@@ -55,6 +43,12 @@
 										<?php endif; ?>
 									</label>
 								</section>
+                                <section>
+                                    <label class="label">Nama Produk <sup class="color-red">*</sup></label>
+                                    <label class="input">
+                                        <input type="text" name="name" value="<?= $name ?>">
+                                    </label>
+                                </section>
                             </div>     
                         </fieldset>
 

@@ -24,6 +24,7 @@
             "aoColumns": [
                 {"sTitle": "ID", "mData": "customer_id"},
                 {"sTitle": "Nama Customer", "mData": "customer_name"},
+                {"sTitle": "No Telp", "mData": "no_tlp"},
                 {"sTitle": "Alamat", "mData": "customer_alamat"},
                 {"sTitle": "Action", "mData": null},
             ],

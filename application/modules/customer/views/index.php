@@ -37,6 +37,7 @@
                                     <tr>
                                         <th data-hide="phone">ID</th>
                                         <th data-class="expand">Nama Customer</th>
+                                        <th data-hide="phone,tablet">No Telp</th>
                                         <th data-hide="phone,tablet">Alamat</th>
                                         <th data-hide="phone,tablet">Action</th>
                                     </tr>

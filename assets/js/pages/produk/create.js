@@ -62,9 +62,6 @@ $(document).ready(function() {
             name: {
                 required: true,
             },
-            price: {
-            	required: true,
-            },
         },
 
         // Messages for form validation

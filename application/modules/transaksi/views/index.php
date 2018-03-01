@@ -6,7 +6,7 @@
         </div>
         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4 col-lg-offset-1 text-right">
             <h1>
-                <a href="<?= site_url('kategori/create') ?>" class="btn btn-primary"><i class="fa fa-plus"></i>
+                <a href="<?= site_url('transaksi/create') ?>" class="btn btn-primary"><i class="fa fa-plus"></i>
                 </a>
             </h1>
         </div>
@@ -40,6 +40,7 @@
                                         <th data-class="expand">Nama Customer</th>
                                         <th data-class="expand">Produk Name</th>
                                         <th data-class="expand">Jumlah Produk</th>
+                                        <th data-class="expand">Harga Produk</th>
                                         <th data-class="expand">Total Harga</th>
                                         <th data-class="expand">Tanggal Transaksi</th>
                                         <th data-hide="phone,tablet">Action</th>

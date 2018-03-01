@@ -89,7 +89,7 @@
 
                         <footer>
                             <button type="submit" class="btn btn-primary"><?= $btn_msg ?></button>
-                            <a href="<?= site_url('customer') ?>" class="btn btn-danger">Cancel</a>
+                            <a href="<?= site_url('transaksi') ?>" class="btn btn-danger">Cancel</a>
                         </footer>
 
                         <!-- HIDDEN FIELDS -->

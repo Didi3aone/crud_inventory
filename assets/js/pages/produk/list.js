@@ -24,7 +24,6 @@
             "aoColumns": [
                 {"sTitle": "ID", "mData": "produk_id"},
                 {"sTitle": "Nama Produk", "mData": "produk_name"},
-                {"sTitle": "Harga Produk", "mData": "produk_price"},
                 {"sTitle": "Unit/kategori", "mData": "kategori_name"},
                 {"sTitle": "Action", "mData": null},
             ],

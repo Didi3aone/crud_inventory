@@ -29,14 +29,10 @@
                             <table id="dataTable" class="table table-striped table-bordered table-hover" width="100%">
                                 <thead>                         
                                     <tr>
-                                        <th data-hide="phone">ID</th>
-                                        <th data-class="expand">Transaksi Type</th>
-                                        <th data-class="expand">Nama Customer</th>
-                                        <th data-class="expand">Produk Name</th>
-                                        <th data-class="expand">Jumlah Produk</th>
-                                        <th data-class="expand">Tanggal Transaksi</th>
                                         <th data-class="expand">Total Harga</th>
-                                        <th data-hide="phone,tablet">Action</th>
+                                        <th data-class="expand">Produk Name</th>
+                                        <th data-class="expand">Kategori/pcs</th>
+                                        <th data-class="expand">Jumlah Produk</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -49,9 +45,9 @@
                                         }
                                     ?>
                                     <th><b>Total Pengeluaran</b></th>
-                                    <th colspan="3"></th>
-                                    <th><b><?= $jml_produk ?></b></th>
                                     <th><b><?= number_format($total) ?></b></th>
+                                    <th colspan="1"></th>
+                                    <th><b><?= $jml_produk ?></b></th>
                                 </tfoot>
                             </table>
                         </div>

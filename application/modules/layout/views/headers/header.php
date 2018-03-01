@@ -52,7 +52,7 @@
         <header id="header">
             <div id="logo-group">
                 <!-- PLACE YOUR LOGO HERE -->
-                <span id="logo"><p style="color: white;"> SYSTEM PENJUALAN </p></span>
+                <span id="logo"><p style="color: white;"> <b>SYSTEM PENJUALAN </b></p></span>
                 <!-- END LOGO PLACEHOLDER -->
             </div>
             <!-- end projects dropdown -->
@@ -69,7 +69,7 @@
                 <ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
                     <li class="">
                         <a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown"> 
-                            <img src="img/avatars/sunny.png" alt="John Doe" class="online" />  
+                            <img src="/crud_inventory/assets/img/1.png" alt="John Doe" class="online" />  
                         </a>
                         <ul class="dropdown-menu pull-right">
                             <li>
@@ -77,14 +77,14 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="<?= site_url() ?>manager/index/logout" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+                                <a href="" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
                             </li>
                         </ul>
                     </li>
                 </ul>
                 <!-- logout button -->
                 <div id="logout" class="btn-header transparent pull-right">
-                    <span> <a href="<?= site_url() ?>manager/index/logout" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+                    <span> <a href="" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
                 </div>
                 <!-- end logout button -->
 
@@ -105,7 +105,7 @@
         <div class="login-info">
             <span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
                 <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-                    <img src="<?= base_url() ?>assets/img/avatars/sunny.png" alt="me" class="online" /> 
+                    <img src="<?= base_url() ?>assets/img/1.png" alt="me" class="online" /> 
                     <span>
                         <?= $this->session->userdata('username') ?> 
                     </span>
@@ -144,25 +144,29 @@
                 </li>
 
                 <li>
-                    <a href="#"><i class="fa fa-lg fa-fw fa-file"></i> <span class="menu-item-parent">Master Report</span></a>
-                    <ul>
-                        <li class="">
-                            <a href="<?= site_url("report/list_pengeluaran") ?>">List Data Pengeluaran</a>
-                        </li>
-                        <li class="">
-                            <a href="<?= site_url("report/list_pemasukan") ?>">List Data Pemasukan</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
                     <a href="#"><i class="fa fa-lg fa-fw fa-file-o"></i> <span class="menu-item-parent">Master Transaksi</span></a>
                     <ul>
+                        <li class="">
+                            <a href="<?= site_url('transaksi') ?>"> List Data Transaksi</a>
+                        </li>
                         <li class="">
                             <a href="<?= site_url('transaksi/create') ?>"> Create Transaksi</a>
                         </li>
                     </ul>
                 </li>
+                
+                <li>
+                    <a href="#"><i class="fa fa-lg fa-fw fa-file"></i> <span class="menu-item-parent">Master Report</span></a>
+                    <ul>
+                        <li class="">
+                            <a href="<?= site_url("report/list_pengeluaran") ?>">Report Data Pengeluaran</a>
+                        </li>
+                        <li class="">
+                            <a href="<?= site_url("report/list_pemasukan") ?>">Report Data Pemasukan</a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
         </nav>
         <span class="minifyme" data-action="minifyMenu"> 

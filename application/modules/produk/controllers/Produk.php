@@ -104,13 +104,11 @@ class Produk extends CI_Controller {
 
         $id 			= $this->input->post('id');
         $name 			= $this->input->post('name');
-        $price 			= $this->input->post('price');
         $kategori_id 	= $this->input->post('kategori_id');
         
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('name', 'Nama', 'trim|required');
-        $this->form_validation->set_rules('price', 'Harga', 'trim|required');
 
         if($this->form_validation->run() == false) {
             $message['error_msg'] = validation_errors();
@@ -120,7 +118,6 @@ class Produk extends CI_Controller {
             //prepare insert data
             $arrayToDB = array(
                 "produk_name"    	 => $name,
-                "produk_price"  	 => $price,
                 "produk_kategori_id" => $kategori_id
             );
          
