@@ -32,8 +32,8 @@
                     "mRender" : function(data ,type, full) {
 
                         var button = '<td>';
-                        button += '<a class="btn btn-primary btn-circle" href="/crud_inventory/customer/edit/' + full.customer_id + '" rel="tooltip" title="Edit Transaksi"><i class="fa fa-pencil"></i></a> &nbsp;';
-                        button += '<a class="btn btn-danger btn-circle delete-confirm" href="javascript:askToDelete('+ full.customer_id +');" rel="tooltip" title="Delete Transaksi"><i class="fa fa-trash"></i></a> &nbsp;';
+                        button += '<a class="btn btn-primary btn-circle" href="/crud_inventory/customer/edit/' + full.customer_id + '" rel="tooltip" title="Edit Customer"><i class="fa fa-pencil"></i></a> &nbsp;';
+                        button += '<a class="btn btn-danger btn-circle delete-confirm" href="javascript:askToDelete('+ full.customer_id +');" rel="tooltip" title="Delete Customer"><i class="fa fa-trash"></i></a> &nbsp;';
                         button += '</td>';
                         return button;
                     }

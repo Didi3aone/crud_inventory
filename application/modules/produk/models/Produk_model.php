@@ -12,7 +12,7 @@ class Produk_model extends CI_Model {
 	}
 
 	public function get_all_data($params = array()) {
-		$this->db->select($this->_table_aliases.'.*, tkp.kategori_name, tkp.kategori_produk_id');
+		$this->db->select($this->_table_aliases.'.*, tkp.kategori_name, tkp.kategori_produk_id,FORMAT('.$this->_table_aliases.'.produk_price,0) as tot');
 		$this->db->from($this->_table." ".$this->_table_aliases);
 		$this->db->join('tbl_kategori_produk tkp', 'tkp.kategori_produk_id = '.$this->_table_aliases.'.produk_kategori_id');
 

@@ -23,7 +23,7 @@ $(document).ready(function () {
             "sAjaxSource": url,
             "aoColumns": [
                 {"sTitle": "produk Name", "mData": "produk_name"},
-                {"sTitle": "Total Harga", "mData": "total_harga"},
+                {"sTitle": "Total Harga", "mData": "tot"},
                 {"sTitle": "Unit/pcs", "mData": "kategori_name"},
                 {"sTitle": "Jumlah Produk", "mData": "jumlah_item"},
             ],

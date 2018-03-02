@@ -25,15 +25,15 @@
                 {"sTitle": "ID", "mData": "produk_id"},
                 {"sTitle": "Nama Produk", "mData": "produk_name"},
                 {"sTitle": "Unit/kategori", "mData": "kategori_name"},
-                {"sTitle": "Harga Produk", "mData": "produk_price"},
+                {"sTitle": "Harga Produk", "mData": "tot"},
                 {
                     "sTitle" : "Action" , "sClass" : "center", "mData" : null,
                     "bSortable" : false,
                     "mRender" : function(data ,type, full) {
 
                         var button = '<td>';
-                        button += '<a class="btn btn-primary btn-circle" href="/crud_inventory/produk/edit/' + full.produk_id + '" rel="tooltip" title="Edit Transaksi"><i class="fa fa-pencil"></i></a> &nbsp;';
-                        button += '<a class="btn btn-danger btn-circle delete-confirm" href="javascript:askToDelete('+ full.produk_id +');" rel="tooltip" title="Delete Transaksi"><i class="fa fa-trash"></i></a> &nbsp;';
+                        button += '<a class="btn btn-primary btn-circle" href="/crud_inventory/produk/edit/' + full.produk_id + '" rel="tooltip" title="Edit Produk"><i class="fa fa-pencil"></i></a> &nbsp;';
+                        button += '<a class="btn btn-danger btn-circle delete-confirm" href="javascript:askToDelete('+ full.produk_id +');" rel="tooltip" title="Delete Produk"><i class="fa fa-trash"></i></a> &nbsp;';
                         button += '</td>';
                         return button;
                     }
